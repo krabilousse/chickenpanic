@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Core\GameCore.cs" />
     <Compile Include="Core\GameEngine.cs" />
+    <Compile Include="Core\GamePhysics.cs" />
     <Compile Include="Core\ICollisionable.cs" />
     <Compile Include="Core\IDrawable.cs" />
     <Compile Include="Core\IUpdatable.cs" />
