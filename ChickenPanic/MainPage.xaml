@@ -12,6 +12,5 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Landscape" Orientation="Landscape"
     shell:SystemTray.IsVisible="True">
-    
-    <Canvas Name="worldCanvas" />
+    <Canvas Background="Transparent" Name="worldCanvas" Height="Auto" Width="Auto" />
 </phone:PhoneApplicationPage>
