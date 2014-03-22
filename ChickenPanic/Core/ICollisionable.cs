@@ -2,6 +2,6 @@
 {
     public interface ICollisionable
     {
-        bool HasCollided(ICollisionable other);
+        void CollisionOccurred(int collisionType);
     }
 }

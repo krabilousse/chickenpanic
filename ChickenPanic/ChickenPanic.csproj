@@ -96,7 +96,11 @@
     <Compile Include="Core\GameCore.cs" />
     <Compile Include="Core\GameEngine.cs" />
     <Compile Include="Core\ICollisionable.cs" />
+    <Compile Include="Core\IDrawable.cs" />
     <Compile Include="Core\IUpdatable.cs" />
+    <Compile Include="Graphics\Characters\Chicken.cs" />
+    <Compile Include="Graphics\DynamicGraphic.cs" />
+    <Compile Include="Graphics\StaticGraphic.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -153,7 +157,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Graphics\Characters\" />
     <Folder Include="Graphics\Components\" />
     <Folder Include="Graphics\Elements\" />
     <Folder Include="Graphics\Surroundings\" />
