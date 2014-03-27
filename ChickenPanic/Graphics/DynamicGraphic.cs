@@ -30,7 +30,7 @@ namespace ChickenPanic.Graphics
 
         }
 
-        public override void CollisionOccurred(int collisionType)
+        public void CollisionOccurred(int collisionType)
         { }
 
         public double XSpeed

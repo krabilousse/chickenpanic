@@ -25,10 +25,10 @@ namespace ChickenPanic.Graphics
             this.representation = representation;
         }
 
-        public override void Update(int elapsedMilliseconds)
+        public virtual void Update(int elapsedMilliseconds)
         { }
 
-        public override UIElement GetRepresentation()
+        public UIElement GetRepresentation()
         {
             return representation;
         }
