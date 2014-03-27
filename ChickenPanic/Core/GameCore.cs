@@ -14,13 +14,19 @@ namespace ChickenPanic.Core
 
         private Rectangle test;
 
-        private int factor;
-
         private GamePhysics physics;
 
-        private Size resolution;
-
         public GameCore(Canvas canvas)
+        {
+
+            physics = new GamePhysics(ScreenResolution());
+
+            worldCanvas = canvas;
+
+            InitializeCore();
+        }
+
+        private static Size ScreenResolution()
         {
             var content = Application.Current.Host.Content;
 
@@ -30,11 +36,7 @@ namespace ChickenPanic.Core
 
             int w = (int)Math.Ceiling(content.ActualWidth * scale);
 
-            resolution = new Size(w, h);
-
-            worldCanvas = canvas;
-
-            InitializeCore();
+            return new Size(w, h);
         }
 
         private void InitializeCore()
@@ -42,16 +44,11 @@ namespace ChickenPanic.Core
             worldCanvas.MouseLeftButtonDown += new MouseButtonEventHandler(WorldCanvas_MouseLeftButtonDown);
 
             test = new Rectangle();
-            physics = new GamePhysics();
-            factor = 1;
 
             test.Width = 50;
             test.Height = 50;
 
-            physics.CurrentHeight = resolution.Width / 2 - 25;
-
             Canvas.SetLeft(test, 50);
-            Canvas.SetTop(test, resolution.Width / 2-25);
 
             test.Fill = new SolidColorBrush(Colors.Red);
             worldCanvas.Children.Add(test);
@@ -60,34 +57,20 @@ namespace ChickenPanic.Core
         private void WorldCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // TODO Catch and store events!
-            Debug.WriteLine("Tits" + physics.CurrentHeight);
-            physics.VerticalGravity *= (-1);
+            physics.chickenJump();
         }
+
+
 
         public void UpdateGame(int elapsedMilliseconds)
         {
-            Debug.WriteLine("ms " + elapsedMilliseconds);
-            physics.CurrentHeight += physics.VerticalGravity + physics.Velocity;
-            physics.Velocity += physics.VerticalGravity * 0.05;
-            physics.Velocity = Math.Min(physics.Velocity, GamePhysics.TerminalVelocity);
+            //Debug.WriteLine("ms " + elapsedMilliseconds);
+            physics.Update(elapsedMilliseconds);
+            RotateTransform rt = new RotateTransform();
+            rt.Angle = physics.Velocity*3;
+            test.RenderTransform = rt;
             Canvas.SetTop(test, physics.CurrentHeight);
-            /*if (factor == 1)
-            {
-                test.Width += elapsedMilliseconds * 0.1;
-            }
-            else if (factor == -1)
-            {
-                test.Width -= elapsedMilliseconds * 0.1;
-            }
-
-            if (test.Width > 300)
-            {
-                factor = -1;
-            }
-            else if (test.Width < 50)
-            {
-                factor = 1;
-            }*/
+            
         }
 
         public Canvas WorldCanvas
