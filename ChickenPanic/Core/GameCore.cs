@@ -29,21 +29,21 @@ namespace ChickenPanic.Core
         {
             worldCanvas.MouseLeftButtonDown += new MouseButtonEventHandler(WorldCanvas_MouseLeftButtonDown);
 
-            test = new Chicken(100, 100, 100, 100, 0, 0, 100);
+            test = new Chicken(100, 100, 100, 100, 0, 0, 0.1);
             gamePhysics = new GamePhysics();
+            gamePhysics.DynamicGraphicsList.Add(test);
 
             worldCanvas.Children.Add(test.GetRepresentation());
         }
 
         private void WorldCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            test.YSpeed = -10;
+            test.YSpeed = -0.75;
         }
 
         public void UpdateGame(int elapsedMilliseconds)
         {
             gamePhysics.Update(elapsedMilliseconds);
-
             /*//Debug.WriteLine("ms " + elapsedMilliseconds);
             physics.Update(elapsedMilliseconds);
             RotateTransform rt = new RotateTransform();

@@ -18,13 +18,14 @@ namespace ChickenPanic.Graphics
         public StaticGraphic(double x, double y, double width, double height)
             : base()
         {
+            representation = new Image();
+
             X = x;
             Y = y;
 
             Width = width;
             Height = height;
 
-            representation = new Image();
         }
 
         public UIElement GetRepresentation()

@@ -7,6 +7,7 @@ using System.Windows;
 
 using System.Windows;
 using System;
+using System.Diagnostics;
 namespace ChickenPanic.Core
 {
     public class GamePhysics : IUpdatable
@@ -24,7 +25,7 @@ namespace ChickenPanic.Core
         public GamePhysics()
         {
             xSpeedFactor = 0.0;
-            ySpeedfactor = 0.00981; // 9.81 m/s -> 0.00981 mm/s
+            ySpeedfactor = 0.00981*2.5; // 9.81 m/s -> 0.00981 mm/s
 
             dynamicGraphicsList = new List<DynamicGraphic>();
 
@@ -35,13 +36,7 @@ namespace ChickenPanic.Core
         {
             var content = Application.Current.Host.Content;
 
-            double scale = (double)content.ScaleFactor / 100;
-
-            int h = (int)Math.Ceiling(content.ActualHeight * scale);
-
-            int w = (int)Math.Ceiling(content.ActualWidth * scale);
-
-            return new Size(w, h);
+            return new Size(content.ActualWidth, content.ActualHeight);
         }
 
         public void Update(int elapsedMilliseconds)
@@ -53,11 +48,19 @@ namespace ChickenPanic.Core
                 dynamicGraphic.Y += dynamicGraphic.YSpeed * elapsedMilliseconds;
 
                 /* Check collisions */
-                // TODO collisions with other objects
+                Debug.WriteLine("dynY : " + dynamicGraphic.Y + ". ResH : " + resolution.Width);
+                if (dynamicGraphic.Y + dynamicGraphic.Height >= resolution.Width)
+                {
+                    dynamicGraphic.Y = resolution.Width - dynamicGraphic.Height;
+                    dynamicGraphic.YSpeed = 0;
+                }
+                else
+                {
+                    dynamicGraphic.YSpeed += dynamicGraphic.Weight * ySpeedfactor * elapsedMilliseconds;
+                }
 
                 /* Update speed */
                 dynamicGraphic.XSpeed += dynamicGraphic.Weight * xSpeedFactor * elapsedMilliseconds;
-                dynamicGraphic.YSpeed += dynamicGraphic.Weight * ySpeedfactor * elapsedMilliseconds;
 
                 /* Limit max speed */
                 if (dynamicGraphic.XSpeed > MAX_X_SPEED)
