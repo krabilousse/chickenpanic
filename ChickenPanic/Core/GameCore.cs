@@ -18,6 +18,8 @@ namespace ChickenPanic.Core
 
         private GamePhysics gamePhysics;
 
+        private GameGenerator gameGenerator;
+
         public GameCore(Canvas canvas)
         {
             worldCanvas = canvas;
@@ -32,6 +34,8 @@ namespace ChickenPanic.Core
             test = new Chicken(100, 100, 100, 100, 0, 0, 0.1);
             gamePhysics = new GamePhysics();
             gamePhysics.DynamicGraphicsList.Add(test);
+
+            gameGenerator = new GameGenerator(ref worldCanvas, ref gamePhysics);
 
             worldCanvas.Children.Add(test.GetRepresentation());
         }

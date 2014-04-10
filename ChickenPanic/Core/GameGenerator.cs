@@ -21,12 +21,14 @@ namespace ChickenPanic.Core
         private Size resolution;
         private int elapsedMilliseconds = 0;
         private Canvas canvas;
+        private GamePhysics physics;
 
 
-        public GameGenerator(Size resolution, ref Canvas canvas)
+        public GameGenerator(ref Canvas worldCanvas, ref GamePhysics gamePhysics)
         {
-            this.resolution = resolution;
-            this.canvas = canvas;
+            canvas = worldCanvas;
+            physics = gamePhysics;
+
         }
 
         public List<Obstacle> Oblstacles { get; set; }
@@ -44,6 +46,7 @@ namespace ChickenPanic.Core
 
                 removeOldObstacle();
             }
+            // TODO : physics
 
         }
 
@@ -73,12 +76,12 @@ namespace ChickenPanic.Core
             double y = 100; // à définir;
             double width = 20;
             double height = 100;
-            /*
+            
             Rectangle representation = new Rectangle();
             representation.Width = width;
             representation.Height = height;
             representation.Fill = new SolidColorBrush(Colors.Green);
-            */
+            
 
             double xSpeed = -10;
             double ySpeed = 0;
@@ -86,7 +89,9 @@ namespace ChickenPanic.Core
 
             Obstacle obstacle = new Obstacle(x, y, width, height, xSpeed, ySpeed, weight);
             obstacles.Add(obstacle);
-            //canvas.Children.Add(representation);
+            canvas.Children.Add(representation);
+            physics.DynamicGraphicsList.Add(obstacle);
+            // TODO : add image to canvas
         }
 
         private void addSpecialObstacle()
@@ -117,6 +122,8 @@ namespace ChickenPanic.Core
             foreach (Obstacle toRemove in obstaclesToRemove)
             {
                 obstacles.Remove(toRemove);
+                //canvas.Children.Remove();
+                physics.DynamicGraphicsList.Remove(toRemove);
             }
         }
     }
