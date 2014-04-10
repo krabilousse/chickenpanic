@@ -1,10 +1,11 @@
 ﻿using ChickenPanic.Core;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ChickenPanic.Graphics
 {
-    public abstract class StaticGraphic : IUpdatable, IDrawable
+    public abstract class StaticGraphic : IDrawable, IUpdatable
     {
         protected double x;
         protected double y;
@@ -12,55 +13,64 @@ namespace ChickenPanic.Graphics
         protected double width;
         protected double height;
 
-        protected UIElement representation;
+        protected Image representation;
 
-        public StaticGraphic(double x, double y, double width, double height, UIElement representation)
+        public StaticGraphic(double x, double y, double width, double height)
+            : base()
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
 
-            this.width = width;
-            this.height = height;
+            Width = width;
+            Height = height;
 
-            this.representation = representation;
+            representation = new Image();
+        }
+
+        public UIElement GetRepresentation()
+        {
+            return representation; 
         }
 
         public virtual void Update(int elapsedMilliseconds)
         { }
 
-        public UIElement GetRepresentation()
-        {
-            return representation;
-        }
-
         public double X
         {
             get { return x; }
-            set { x = value; }
+            set 
+            {
+                Canvas.SetLeft(representation, x);
+                x = value; 
+            }
         }
 
         public double Y
         {
             get { return y; }
-            set { y = value; }
+            set
+            {
+                Canvas.SetTop(representation, y);
+                y = value;
+            }
         }
 
         public double Width
         {
             get { return width; }
-            set { width = value; }
+            set
+            {
+                representation.Width = width = value;
+            }
         }
 
         public double Height
         {
             get { return height; }
-            set { height = value; }
-        }
-
-        public UIElement Representation
-        {
-            get { return representation; }
-            set { representation = value; }
+            set
+            {
+                representation.Height = height = value;
+            }
         }
     }
 }
