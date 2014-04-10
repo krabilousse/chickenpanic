@@ -33,7 +33,7 @@ namespace ChickenPanic.Core
 
         public List<Obstacle> Oblstacles { get; set; }
 
-        public void updateObstacles(int elapsedMilliseconds, GamePhysics physics)
+        public void UpdateObstacles(int elapsedMilliseconds)
         {
             this.elapsedMilliseconds += elapsedMilliseconds;
             if (this.elapsedMilliseconds >= randomNumber)
@@ -110,7 +110,7 @@ namespace ChickenPanic.Core
 
         private void removeOldObstacle()
         {
-            List<Obstacle> obstaclesToRemove = null;
+            List<Obstacle> obstaclesToRemove = new List<Obstacle>();
             foreach (Obstacle dg in obstacles)
             {
                 if (dg.X + dg.Weight < 0)

@@ -48,6 +48,7 @@ namespace ChickenPanic.Core
         public void UpdateGame(int elapsedMilliseconds)
         {
             gamePhysics.Update(elapsedMilliseconds);
+            gameGenerator.UpdateObstacles(elapsedMilliseconds);
             /*//Debug.WriteLine("ms " + elapsedMilliseconds);
             physics.Update(elapsedMilliseconds);
             RotateTransform rt = new RotateTransform();
