@@ -102,6 +102,7 @@
     <Compile Include="Core\IUpdatable.cs" />
     <Compile Include="Graphics\Characters\Chicken.cs" />
     <Compile Include="Graphics\DynamicGraphic.cs" />
+    <Compile Include="Graphics\Elements\Obstacle.cs" />
     <Compile Include="Graphics\StaticGraphic.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -161,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\Components\" />
-    <Folder Include="Graphics\Elements\" />
     <Folder Include="Graphics\Surroundings\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
