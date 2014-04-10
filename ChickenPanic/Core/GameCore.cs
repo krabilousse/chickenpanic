@@ -43,6 +43,13 @@ namespace ChickenPanic.Core
         public void UpdateGame(int elapsedMilliseconds)
         {
             gamePhysics.Update(elapsedMilliseconds);
+
+            /*//Debug.WriteLine("ms " + elapsedMilliseconds);
+            physics.Update(elapsedMilliseconds);
+            RotateTransform rt = new RotateTransform();
+            rt.Angle = physics.Velocity*3;
+            test.RenderTransform = rt;
+            Canvas.SetTop(test, physics.CurrentHeight);*/
         }
 
         public Canvas WorldCanvas
