@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-using System.Windows;
-using System;
 using System.Diagnostics;
 namespace ChickenPanic.Core
 {
@@ -48,7 +46,7 @@ namespace ChickenPanic.Core
                 dynamicGraphic.Y += dynamicGraphic.YSpeed * elapsedMilliseconds;
 
                 /* Check collisions */
-                Debug.WriteLine("dynY : " + dynamicGraphic.Y + ". ResH : " + resolution.Width);
+                //Debug.WriteLine("dynY : " + dynamicGraphic.Y + ". ResH : " + resolution.Width);
                 if (dynamicGraphic.Y + dynamicGraphic.Height >= resolution.Width)
                 {
                     dynamicGraphic.Y = resolution.Width - dynamicGraphic.Height;

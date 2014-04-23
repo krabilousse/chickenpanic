@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 
 namespace ChickenPanic.Core
@@ -46,8 +47,7 @@ namespace ChickenPanic.Core
                 this.elapsedMilliseconds = 0;
 
                 Random random = new Random();
-                randomNumber = (int)random.Next(2000, 3000);
-
+                randomNumber = (int)random.Next(1000, 1000);
             }
         }
 
@@ -73,10 +73,10 @@ namespace ChickenPanic.Core
 
         private void addNormalObstacle()
         {
-            double x = resolution.Width;
-            double y = 100; // à définir;
-            double width = 20;
-            double height = 100;
+            double x = resolution.Height;
+            double y = 0; // à définir;
+            double width = 50;
+            double height = 50;
 
             /*
             Rectangle representation = new Rectangle();
@@ -85,9 +85,9 @@ namespace ChickenPanic.Core
             representation.Fill = new SolidColorBrush(Colors.Green);
             */
 
-            double xSpeed = -10;
+            double xSpeed = -0.5;
             double ySpeed = 0;
-            double weight = 1;
+            double weight = 0;
 
             Obstacle obstacle = new Obstacle(x, y, width, height, xSpeed, ySpeed, weight);
             obstacles.Add(obstacle);
@@ -114,8 +114,10 @@ namespace ChickenPanic.Core
             List<Obstacle> obstaclesToRemove = new List<Obstacle>();
             foreach (Obstacle dg in obstacles)
             {
-                if (dg.X + dg.Weight < 0)
+                Debug.WriteLine("dgx :" + dg.X + " " + obstacles.Count());
+                if (dg.X + dg.Width < 0)
                 {
+                    Debug.WriteLine("remove:" + dg.Width);
                     obstaclesToRemove.Add(dg);
                 }
             }
