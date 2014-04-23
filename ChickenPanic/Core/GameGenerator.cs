@@ -46,7 +46,7 @@ namespace ChickenPanic.Core
                 this.elapsedMilliseconds = 0;
 
                 Random random = new Random();
-                randomNumber = (int)random.Next(2000, 3000);
+                randomNumber = (int)random.Next(1000, 2000);
 
             }
         }
@@ -73,10 +73,10 @@ namespace ChickenPanic.Core
 
         private void addNormalObstacle()
         {
-            double x = resolution.Width;
-            double y = 100; // à définir;
-            double width = 20;
-            double height = 100;
+            double x = resolution.Height;
+            double y = (double)new Random().Next(-250, 0);
+            double width = 50;
+            double height = 300;
 
             /*
             Rectangle representation = new Rectangle();
@@ -85,14 +85,23 @@ namespace ChickenPanic.Core
             representation.Fill = new SolidColorBrush(Colors.Green);
             */
 
-            double xSpeed = -10;
+            double xSpeed = -0.5;
             double ySpeed = 0;
-            double weight = 1;
+            double weight = 0;
 
-            Obstacle obstacle = new Obstacle(x, y, width, height, xSpeed, ySpeed, weight);
-            obstacles.Add(obstacle);
-            physics.DynamicGraphicsList.Add(obstacle);
-            canvas.Children.Add(obstacle.GetRepresentation());
+            Obstacle obstacle1 = new Obstacle(x, y, width, height, xSpeed, ySpeed, weight, -1);
+            obstacles.Add(obstacle1);
+            physics.DynamicGraphicsList.Add(obstacle1);
+            canvas.Children.Add(obstacle1.GetRepresentation());
+
+            y += 500;
+            Obstacle obstacle2 = new Obstacle(x, y, width, height, xSpeed, ySpeed, weight, 1);
+            obstacles.Add(obstacle2);
+            physics.DynamicGraphicsList.Add(obstacle2);
+            canvas.Children.Add(obstacle2.GetRepresentation());
+
+            physics.Update(0);
+
         }
 
         private void addSpecialObstacle()
@@ -114,7 +123,7 @@ namespace ChickenPanic.Core
             List<Obstacle> obstaclesToRemove = new List<Obstacle>();
             foreach (Obstacle dg in obstacles)
             {
-                if (dg.X + dg.Weight < 0)
+                if (dg.X + dg.Width < 0)
                 {
                     obstaclesToRemove.Add(dg);
                 }
@@ -122,8 +131,8 @@ namespace ChickenPanic.Core
 
             foreach (Obstacle toRemove in obstaclesToRemove)
             {
-                obstacles.Remove(toRemove);
                 canvas.Children.Remove(toRemove.GetRepresentation());
+                obstacles.Remove(toRemove);
                 physics.DynamicGraphicsList.Remove(toRemove);
             }
         }

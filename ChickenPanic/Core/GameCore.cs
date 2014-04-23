@@ -31,7 +31,7 @@ namespace ChickenPanic.Core
         {
             worldCanvas.MouseLeftButtonDown += new MouseButtonEventHandler(WorldCanvas_MouseLeftButtonDown);
 
-            test = new Chicken(100, 100, 100, 100, 0, 0, 0.1);
+            test = new Chicken(100, 100, 60, 60, 0, 0, 0.1);
             gamePhysics = new GamePhysics();
             gamePhysics.DynamicGraphicsList.Add(test);
 
@@ -48,6 +48,11 @@ namespace ChickenPanic.Core
         public void UpdateGame(int elapsedMilliseconds)
         {
             gamePhysics.Update(elapsedMilliseconds);
+            if (gamePhysics.checkColision(test))
+            {
+                // TODO : stopper le jeu
+                while (true) ;
+            }
             gameGenerator.UpdateObstacles(elapsedMilliseconds);
             /*//Debug.WriteLine("ms " + elapsedMilliseconds);
             physics.Update(elapsedMilliseconds);

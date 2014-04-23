@@ -48,10 +48,15 @@ namespace ChickenPanic.Core
                 dynamicGraphic.Y += dynamicGraphic.YSpeed * elapsedMilliseconds;
 
                 /* Check collisions */
-                Debug.WriteLine("dynY : " + dynamicGraphic.Y + ". ResH : " + resolution.Width);
-                if (dynamicGraphic.Y + dynamicGraphic.Height >= resolution.Width)
+                //Debug.WriteLine("dynY : " + dynamicGraphic.Y + ". ResH : " + resolution.Width);
+                if (dynamicGraphic.Y + dynamicGraphic.Height >= resolution.Width && dynamicGraphic.Weight != 0)
                 {
                     dynamicGraphic.Y = resolution.Width - dynamicGraphic.Height;
+                    dynamicGraphic.YSpeed = 0;
+                }
+                else if (dynamicGraphic.Y < 0 && dynamicGraphic.Weight != 0)
+                {
+                    dynamicGraphic.Y = 0;
                     dynamicGraphic.YSpeed = 0;
                 }
                 else
@@ -73,6 +78,20 @@ namespace ChickenPanic.Core
                     dynamicGraphic.YSpeed = MAX_Y_SPEED;
                 }
 	        }
+        }
+
+        public bool checkColision(DynamicGraphic obj)
+        {
+            foreach (DynamicGraphic dg in dynamicGraphicsList)
+            {
+                if (obj.X + obj.Width > dg.X && obj.X < dg.X + dg.Width
+                    && obj.Y + obj.Height > dg.Y && obj.Y < dg.Y + dg.Height
+                    && !obj.Equals(dg))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public double XSpeedFactor

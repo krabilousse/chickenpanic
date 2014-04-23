@@ -152,6 +152,10 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="chiken01.png" />
+    <Content Include="chiken02.png" />
+    <Content Include="obstacle01.png" />
+    <Content Include="obstacle02.png" />
     <Content Include="test.png" />
   </ItemGroup>
   <ItemGroup>

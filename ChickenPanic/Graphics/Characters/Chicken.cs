@@ -10,7 +10,7 @@ namespace ChickenPanic.Graphics.Characters
         public Chicken(double x, double y, double width, double height, double xSpeed, double ySpeed, double weight)
             : base(x, y, width, height, xSpeed, ySpeed, weight)
         {
-            representation.Source = new BitmapImage(new Uri("/test.png", UriKind.Relative));
+            representation.Source = new BitmapImage(new Uri("/chiken01.png", UriKind.Relative));
         }
     }
 }
