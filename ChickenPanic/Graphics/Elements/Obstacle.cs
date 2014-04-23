@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ChickenPanic.Graphics.Elements
 {
@@ -12,7 +9,7 @@ namespace ChickenPanic.Graphics.Elements
         public Obstacle(double x, double y, double width, double height, double xSpeed, double ySpeed, double weight)
             : base(x, y, width, height, xSpeed, ySpeed, weight)
         {
-
+            this.representation.Source =  new BitmapImage(new Uri("/test.png", UriKind.Relative));
         }
     }
 }
