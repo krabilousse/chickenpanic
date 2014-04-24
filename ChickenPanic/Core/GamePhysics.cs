@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 
 using System.Diagnostics;
+using ChickenPanic.Graphics.Surroundings;
 namespace ChickenPanic.Core
 {
     public class GamePhysics : IUpdatable
@@ -41,6 +42,8 @@ namespace ChickenPanic.Core
         {
             foreach(DynamicGraphic dynamicGraphic in dynamicGraphicsList)
 	        {
+                dynamicGraphic.Update(elapsedMilliseconds);
+
                 /* Update position */
                 dynamicGraphic.X += dynamicGraphic.XSpeed * elapsedMilliseconds;
                 dynamicGraphic.Y += dynamicGraphic.YSpeed * elapsedMilliseconds;
@@ -81,8 +84,8 @@ namespace ChickenPanic.Core
         {
             foreach (DynamicGraphic dg in dynamicGraphicsList)
             {
-                if (obj.X + obj.Width > dg.X && obj.X < dg.X + dg.Width
-                    && obj.Y + obj.Height > dg.Y && obj.Y < dg.Y + dg.Height
+                if (obj.X + obj.Width - 20 > dg.X && obj.X + 20 < dg.X + dg.Width
+                    && obj.Y + obj.Height - 20 > dg.Y && obj.Y + 20 < dg.Y + dg.Height
                     && !obj.Equals(dg))
                 {
                     return true;

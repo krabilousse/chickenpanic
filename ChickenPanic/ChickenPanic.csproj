@@ -104,6 +104,7 @@
     <Compile Include="Graphics\DynamicGraphic.cs" />
     <Compile Include="Graphics\Elements\Obstacle.cs" />
     <Compile Include="Graphics\StaticGraphic.cs" />
+    <Compile Include="Graphics\Surroundings\Background.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -152,6 +153,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="background.png" />
     <Content Include="chiken01.png" />
     <Content Include="chiken02.png" />
     <Content Include="obstacle01.png" />
@@ -166,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\Components\" />
-    <Folder Include="Graphics\Surroundings\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

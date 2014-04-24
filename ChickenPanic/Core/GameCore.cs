@@ -42,7 +42,7 @@ namespace ChickenPanic.Core
 
         private void WorldCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            test.YSpeed = -0.75;
+            test.DoFlap();
         }
 
         public void UpdateGame(int elapsedMilliseconds)
@@ -51,15 +51,9 @@ namespace ChickenPanic.Core
             if (gamePhysics.checkColision(test))
             {
                 // TODO : stopper le jeu
-                while (true) ;
+                Application.Current.Terminate();
             }
             gameGenerator.UpdateObstacles(elapsedMilliseconds);
-            /*//Debug.WriteLine("ms " + elapsedMilliseconds);
-            physics.Update(elapsedMilliseconds);
-            RotateTransform rt = new RotateTransform();
-            rt.Angle = physics.Velocity*3;
-            test.RenderTransform = rt;
-            Canvas.SetTop(test, physics.CurrentHeight);*/
         }
 
         public Canvas WorldCanvas
