@@ -20,9 +20,12 @@ namespace ChickenPanic.Core
 
         private GameGenerator gameGenerator;
 
+        private Stopwatch scoreWatch;
+
         public GameCore(Canvas canvas)
         {
             worldCanvas = canvas;
+            scoreWatch = new Stopwatch();
 
             InitializeCore();
         }
@@ -38,6 +41,8 @@ namespace ChickenPanic.Core
             gameGenerator = new GameGenerator(ref worldCanvas, ref gamePhysics);
 
             worldCanvas.Children.Add(test.GetRepresentation());
+
+            scoreWatch.Start();
         }
 
         private void WorldCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -50,8 +55,10 @@ namespace ChickenPanic.Core
             gamePhysics.Update(elapsedMilliseconds);
             if (gamePhysics.checkColision(test))
             {
-                // TODO : stopper le jeu
+                MessageBox.Show("You survived " + scoreWatch.ElapsedMilliseconds / 1000 + " seconds!\n\nChickenPanic will now close.", "Game Over", MessageBoxButton.OK);
+                    
                 Application.Current.Terminate();
+                
             }
             gameGenerator.UpdateObstacles(elapsedMilliseconds);
         }

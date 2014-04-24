@@ -40,7 +40,7 @@ namespace ChickenPanic.Core
             deltaTime = renderingStopwatch.ElapsedMilliseconds - lastFrame;
             lastFrame += deltaTime;
 
-            gameCore.UpdateGame((int) deltaTime);
+            gameCore.UpdateGame((int)deltaTime);
         }
     }
 }
